@@ -1,6 +1,5 @@
 ![](https://i.imgur.com/xG74tOh.png)
 
-<<<<<<< HEAD
 # Desafio | Back-end - Módulo 4
 
 ## Descrição do desafio
@@ -598,27 +597,3 @@ function extrato(...) {
 **LEMBRE-SE**: é melhor feito do que perfeito!!!
 
 ###### tags: `back-end` `módulo 4` `nodeJS` `API REST` `desafio`
-=======
-# Desafio | Back-end e Front-end - Módulo 4
-
-## Como entregar?
-
-- [ ] Faça o fork desse repositório para o seu GitHub
-- [ ] Clone o seu repositório em sua máquina
-- [ ] Desenvolva seu projeto, fazendo commits a cada alteração e push
-- [ ] Crie um PR (pull request)
-- [ ] Envie o link do pull request que você criou na plataforma da Cubos
-
-### ⚠️ Importante: Se o pull request não for criado e enviado na plataforma o feedback não será fornecido e constará como não entregue
-
-### ⚠️ Importante: Envie um PR por grupo!
-
-## Como rodar?
-
-- Para cada projeto [Front-end](./frontend/) e [Back-end](./backend/) é necessário instar as dependências com `npm install`.
-- Para cada projeto, basta usar o `npm run start` para subir ambos os projetos.
-
-## Instruções
-
-- Em projeto [Front-end](./frontend/) e [Back-end](./backend/) há um README descrevendo todos os requisitos.
->>>>>>> 49dad2878aef9cd5df9e0a14c4327fa66cf098dc
