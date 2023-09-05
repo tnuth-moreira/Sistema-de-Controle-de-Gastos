@@ -1,5 +1,6 @@
 ![](https://i.imgur.com/xG74tOh.png)
 
+<<<<<<< HEAD
 # Desafio | Back-end - Módulo 4
 
 ## Descrição do desafio
@@ -597,3 +598,4 @@ function extrato(...) {
 **LEMBRE-SE**: é melhor feito do que perfeito!!!
 
 ###### tags: `back-end` `módulo 4` `nodeJS` `API REST` `desafio`
+=======
