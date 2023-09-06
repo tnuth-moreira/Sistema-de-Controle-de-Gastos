@@ -5,8 +5,11 @@ module.exports = {
     agencia: "0001",
     senha: "Cubos123Bank",
   },
-  contas: [],
+  contas: [
+    
+  ],
   saques: [],
   depositos: [],
   transferencias: [],
 };
+
