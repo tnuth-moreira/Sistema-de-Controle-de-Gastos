@@ -1,5 +1,5 @@
 const app = require("./servidor");
 
 
-app.listen(3333);
+app.listen(3000);
 
