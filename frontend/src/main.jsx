@@ -1,35 +1,15 @@
+
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./Login/styles.css";
-import BackgroundImage from "./assets/background.png"
+import { BrowserRouter } from 'react-router-dom'
+import MyRoutes from "./routes"
+import Login from "./Pages/Login/App"
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-
-
-    <img src={BackgroundImage} />
-
-    <div className="container-main">
-
-      <div className="adver-text">
-
-        Controle suas <span>finanças</span> , sem planilha chata.
-
-      </div>
-
-
-      <div className="login-form">
-
-        <h1>Login</h1>
-        <form>
-
-        </form>
-      </div>
-
-
-    </div>
-
-
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <MyRoutes />
+        </BrowserRouter>
+    </React.StrictMode>
 );

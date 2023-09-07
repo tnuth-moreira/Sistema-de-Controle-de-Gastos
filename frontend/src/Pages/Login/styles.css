@@ -1,0 +1,210 @@
+.container-main {
+
+    display: flex;
+    height: 100vh;
+
+}
+
+
+img {
+
+    width: 1985px;
+    height: 940px;
+
+    position: absolute;
+    z-index: -1;
+
+}
+
+.container-text {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.adver-text {
+
+    display: flex;
+    margin-top: 330px;
+    margin-left: 70px;
+    margin-right: 120px;
+
+    width: 1000px;
+
+}
+
+.adver-text h1 {
+
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    color: #ffff;
+}
+
+.adver-text span {
+    color: #7978D9;
+
+}
+
+.desc-text {
+
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-bottom: 75px;
+
+    width: 900px;
+
+}
+
+.desc-text h1 {
+    color: #FFF;
+    font-family: 'Rubik', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.signup-button {
+
+    width: 350px;
+    height: 70px;
+
+    margin-left: 70px;
+
+    border-radius: 5px;
+    border: 0px;
+
+    background-color: #7978D9;
+    color: #FFFFFF;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    cursor: pointer;
+
+
+}
+
+.signup-button:hover {
+
+    background-color: #56559c;
+
+}
+
+
+.login-form {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 700px;
+    height: 640px;
+
+    margin-left: 10px;
+    margin-top: 110px;
+
+    background-color: #ffff;
+    border-radius: 20px;
+}
+
+.login-form h1 {
+
+    color: #7978D9;
+    font-family: 'Rubik', sans-serif;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    margin-top: 60px;
+
+
+}
+
+.login-form form {
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 75px;
+
+}
+
+
+.inputs-form {
+
+    display: flex;
+    flex-direction: column;
+
+
+
+}
+
+form span {
+
+    color: #484848;
+    font-family: 'Rubik', sans-serif;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    margin-left: 40px;
+
+}
+
+input {
+
+    height: 70px;
+    width: 620px;
+    padding: 20px;
+
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 65px;
+
+    border-radius: 5px;
+    border: 1px solid #555;
+
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+
+}
+
+.signin-button {
+
+    width: 550px;
+    height: 70px;
+
+    margin-left: 85px;
+
+    border-radius: 5px;
+    border: 0px;
+
+    background-color: #7978D9;
+    color: #FFFFFF;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    cursor: pointer;
+
+
+}
+
+.signin-button:hover {
+
+    background-color: #56559c;
+
+}
