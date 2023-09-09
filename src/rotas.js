@@ -1,12 +1,12 @@
-const express = require('express');
-const contas = require('./controladores/clientes'); 
+const express = require("express");
+const contas = require("./controladores/clientes");
 
-const rotas = express(); 
+const rotas = express();
 
-rotas.get('/contas', contas.listarContas); 
+rotas.get("/contas", contas.listarContas);
 
-rotas.post('/contas', contas.criarConta);
+rotas.post("/contas", contas.criarConta);
 
-
+rotas.put('/contas/:id', atualizarUsuarioConta);
 
 module.exports = rotas;
