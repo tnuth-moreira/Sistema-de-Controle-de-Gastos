@@ -3,10 +3,12 @@ const contas = require("./controladores/clientes");
 
 const rotas = express();
 
-rotas.get("/contas", contas.listarContas);
+rotas.get('/contas', contas.listarContas);
 
-rotas.post("/contas", contas.criarConta);
+rotas.post('/contas', contas.criarConta);
 
 rotas.put('/contas/:id/usuario', contas.atualizarUsuarioConta);
+
+rotas.delete('/contas/:id', contas.excluirConta);
 
 module.exports = rotas;

@@ -1,4 +1,4 @@
-const { contas } = require("../bancodedados");
+let { contas, id } = require("../bancodedados");
 const { banco } = require("../bancodedados");
 
 
@@ -55,17 +55,15 @@ const atualizarUsuarioConta = (req, res) => {
   }
 
   const conta = contas.find((conta) => {
-    return conta.id === id;
+    return conta.id === Number(id);
   });
 
-  if (!contas) {
+  if (!conta) {
     return res.status(404).json({ error: "Conta não encontrada"});
   }
 
   const contaAtualizada = {
 
-    id: contas.id,
-    saldo: contas.saldo,
     usuario: {
         nome,
         cpf,
@@ -77,8 +75,28 @@ const atualizarUsuarioConta = (req, res) => {
   return res.status(203).send({ messagem: "Atualizada com sucesso", conta: contaAtualizada});
 };
 
+
+const excluirConta = (req, res) => { 
+  const {id} = req.params;
+
+  const conta = contas.find((conta) => { 
+    return conta.id === Number(id);
+  });
+
+  if (!conta) {
+    return res.status(404).json({ error: "Conta não encontrada"});
+  }
+
+  contas = contas.filter((conta) => { 
+    return conta.id ==! Number(id);
+  });
+
+  return res.status(204).send();
+};
+
 module.exports = {
   listarContas,
   criarConta,
   atualizarUsuarioConta,
+  excluirConta
 };
