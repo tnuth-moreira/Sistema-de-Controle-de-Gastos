@@ -149,7 +149,17 @@ const deposito = (req, res) => {
 
   conta.saldo += Number(valor); 
 
+  const dataAtual = new Date();
+  let ano = dataAtual.getFullYear();
+  let mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Adiciona zero à esquerda, se necessário
+  let dia = String(dataAtual.getDate()).padStart(2, '0');
+  let hora = String(dataAtual.getHours()).padStart(2, '0');
+  let minuto = String(dataAtual.getMinutes()).padStart(2, '0');
+  let segundo = String(dataAtual.getSeconds()).padStart(2, '0');
+  const dataFormatada = `${ano}-${mes}-${dia} ${hora}:${minuto}:${segundo}`;
+
   depositos.push({
+    data: dataFormatada,
     conta: numero_conta, 
     valor: valor,
   });
