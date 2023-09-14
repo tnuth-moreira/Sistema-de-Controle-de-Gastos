@@ -151,7 +151,7 @@ const deposito = (req, res) => {
 
   const dataAtual = new Date();
   let ano = dataAtual.getFullYear();
-  let mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Adiciona zero à esquerda, se necessário
+  let mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
   let dia = String(dataAtual.getDate()).padStart(2, '0');
   let hora = String(dataAtual.getHours()).padStart(2, '0');
   let minuto = String(dataAtual.getMinutes()).padStart(2, '0');
