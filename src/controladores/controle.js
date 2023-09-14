@@ -1,4 +1,5 @@
-let { contas, depositos, banco } = require("../bancodedados");
+let { contas, depositos, saques} = require("../bancodedados");
+
 
 
 const listarContas = (req, res) => {
@@ -92,23 +93,22 @@ const atualizarUsuarioConta = (req, res) => {
     return res.status(404).json({ erro: "Conta não encontrada"});
   }
 
-  const contaAtualizada = {
+   conta.usuario = {
+      nome,
+      cpf,
+      telefone,
+      email,
+      senha,
+  }
 
-    usuario: {
-        nome,
-        cpf,
-        telefone,
-        email,
-        senha,
-    },
-  };
-  return res.status(203).send({ menssagem: "Atualizada com sucesso", conta: contaAtualizada.usuario});
+  return res.status(203).send({ menssagem: "Atualizada com sucesso", conta: conta.usuario});
 };
 
 
 const excluirConta = (req, res) => { 
   const {id} = req.params;
 
+  console.log(id);
   const conta = contas.find((conta) => { 
     return conta.id === Number(id);
   });
@@ -117,12 +117,13 @@ const excluirConta = (req, res) => {
     return res.status(404).json({ erro: "Conta não encontrada"});
   }
 
-  contas = contas.filter((conta) => { 
-    return conta.id ==! Number(id);
+  contas = contas.filter((x) => { 
+    return x.id !== Number(id);
   });
 
   return res.status(204).send();
 };
+
 
 
 const deposito = (req, res) => { 
@@ -165,10 +166,71 @@ const deposito = (req, res) => {
   });
   let deposito = depositos[depositos.length - 1]; 
 
-
   return res.status(200).json({ menssagem: "Deposito realizado com sucesso !", Deposito: deposito})
 
 };
+
+
+const saque = (req, res) => { 
+   const {numero_conta, valor, senha} = req.body;
+
+
+   if (!numero_conta || !valor) {
+    return res.status(412).json({ erro: "Por Favor, preencha todas as informações"});
+  }
+
+  if(!senha) {
+      return res.status(400).json({ erro: "Digite a senha"});
+  }
+
+  const validacaoSenha = contas.find((validarSenha) => {
+    return validarSenha.usuario.senha !== senha;
+  });
+
+  if(validacaoSenha) { 
+      return res.send({ erro: "Senha Incorreta"});
+}
+ 
+const conta = contas.find((conta) => { 
+    return conta.id == numero_conta;
+  });
+  
+  if (!conta) {
+    return res.status(404).json({ erro:"Conta não encontrada"});
+  }
+
+  const validacaoSaldo = contas.find((validarSaldo) => { 
+    return validarSaldo.saldo < valor; 
+  }); 
+  
+    if(validacaoSaldo) { 
+      return res.send({ erro: "Saldo insuficiente"});
+    }
+
+
+  conta.saldo -= Number(valor);
+
+  const dataAtual = new Date();
+  let ano = dataAtual.getFullYear();
+  let mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+  let dia = String(dataAtual.getDate()).padStart(2, '0');
+  let hora = String(dataAtual.getHours()).padStart(2, '0');
+  let minuto = String(dataAtual.getMinutes()).padStart(2, '0');
+  let segundo = String(dataAtual.getSeconds()).padStart(2, '0');
+  const dataFormatada = `${ano}-${mes}-${dia} ${hora}:${minuto}:${segundo}`;
+
+  saques.push({
+    data: dataFormatada,
+    conta: numero_conta, 
+    valor: valor,
+  });
+
+let saque = depositos[depositos.length - 1];
+
+ return res.status(200).json({ menssagem: "Saque realizado com sucesso!", Saque: saque})
+
+};
+
 
 
 module.exports = {
@@ -177,4 +239,5 @@ module.exports = {
   atualizarUsuarioConta,
   excluirConta,
   deposito,
+  saque,
 };

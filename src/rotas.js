@@ -5,6 +5,7 @@ const {
     atualizarUsuarioConta,
     excluirConta,
     deposito,
+    saque,
 } = require("./controladores/controle");
 const { senhaBanco } = require("./intermediarios");
 
@@ -15,6 +16,7 @@ rotas.get('/contas', senhaBanco, listarContas);
 
 rotas.post('/contas', criarConta);
 rotas.post('/transacoes/depositar', deposito);
+rotas.post('/transacoes/sacar', saque);
 
 rotas.put('/contas/:id/usuario', atualizarUsuarioConta);
 

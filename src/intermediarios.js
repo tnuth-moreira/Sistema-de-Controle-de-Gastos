@@ -14,6 +14,6 @@ const senhaBanco = (req, res, next) => {
 }
 
 module.exports = {
-    senhaBanco
+    senhaBanco,
 }
 
