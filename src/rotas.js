@@ -6,10 +6,12 @@ const {
     excluirConta,
     deposito,
 } = require("./controladores/controle");
+const { senhaBanco } = require("./intermediarios");
 
 const rotas = express();
 
-rotas.get('/contas', listarContas);
+
+rotas.get('/contas', senhaBanco, listarContas);
 
 rotas.post('/contas', criarConta);
 rotas.post('/transacoes/depositar', deposito);
