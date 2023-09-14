@@ -1,14 +1,21 @@
 const express = require("express");
-const contas = require("./controladores/clientes");
+const {
+    listarContas,
+    criarConta,
+    atualizarUsuarioConta,
+    excluirConta,
+    deposito,
+} = require("./controladores/controle");
 
 const rotas = express();
 
-rotas.get('/contas', contas.listarContas);
+rotas.get('/contas', listarContas);
 
-rotas.post('/contas', contas.criarConta);
+rotas.post('/contas', criarConta);
+rotas.post('/transacoes/depositar', deposito);
 
-rotas.put('/contas/:id/usuario', contas.atualizarUsuarioConta);
+rotas.put('/contas/:id/usuario', atualizarUsuarioConta);
 
-rotas.delete('/contas/:id', contas.excluirConta);
+rotas.delete('/contas/:id', excluirConta);
 
 module.exports = rotas;
