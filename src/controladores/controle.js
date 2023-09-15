@@ -46,11 +46,16 @@ const criarConta = (req, res) => {
   if (!data_nascimento.match(validacaoDataNascimento)) {
     return res.status(412).json({ erro: "Data de nascimento inválida. Use o formato 'AAAA-MM-DD'"});
   }
+ 
+  const idsExistentes = contas.map((conta) => conta.id);
 
-  let idContas = 1;
+  let novoId = 1;
+  while (idsExistentes.includes(novoId)) {
+    novoId++;
+  }
 
   const novaConta = {
-    id: idContas++,
+    id: novoId,
     saldo: 0,
     usuario: {
       nome,
@@ -63,6 +68,7 @@ const criarConta = (req, res) => {
   };
 
   contas.push(novaConta);
+
   return res.status(201).json({ mensagem: "Conta criada com sucesso.", conta: novaConta });
 };
 
