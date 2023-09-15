@@ -2,7 +2,12 @@ let { contas, depositos, saques, transferencias} = require("../bancodedados");
 
 
 const listarContas = (req, res) => {
-  return res.status(200).json(contas);
+  
+  const listaContas = [...contas]
+
+  listaContas.sort((conta1, conta2) => conta1.id - conta2.id);
+  
+  return res.status(200).json(listaContas);
 };
 
 const criarConta = (req, res) => {
