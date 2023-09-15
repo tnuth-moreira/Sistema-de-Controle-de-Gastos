@@ -1,13 +1,14 @@
 
-import "../Login/styles.css";
+import "./styles.css";
 import BackgroundImage from "../../assets/background.png"
-import { Link } from 'react-router-dom'
+import LogoImage from "../../assets/logo.png"
+import { useNavigate, Link } from 'react-router-dom'
 
 
 
+function Login({ loginForm, setLoginForm, users, setUsers }) {
 
-
-function Login({ loginForm, setLoginForm }) {
+  const navigate = useNavigate()
 
   function handleChange(e) {
 
@@ -15,7 +16,25 @@ function Login({ loginForm, setLoginForm }) {
 
     setLoginForm({ ...loginForm, [e.target.name]: value })
 
+  }
 
+  function handleSubmitForm(event) {
+
+    event.preventDefault();
+
+    if (!loginForm.email || !loginForm.password) {
+      return
+    }
+
+    const userLogin = users.some((user) => user.signupForm.email === loginForm.email && user.signupForm.password === loginForm.password)
+
+    if (!userLogin) {
+      return
+    }
+
+    setLoginForm({ email: '', password: '' })
+
+    navigate('/home')
   }
 
 
@@ -23,9 +42,17 @@ function Login({ loginForm, setLoginForm }) {
 
     <div>
 
-      <img src={BackgroundImage} />
+      <img className="background-img" src={BackgroundImage} />
 
       <div className="container-main">
+
+
+        <div className='login-logo-container'>
+
+          <img className='logo-img' src={LogoImage} />
+          <h3>DinDin</h3>
+
+        </div>
 
         <div className="container-text">
 
@@ -41,8 +68,9 @@ function Login({ loginForm, setLoginForm }) {
 
           </div>
           <Link to="/cadastre-se">
-            <button className="signup-button" type="button">Cadastre-se</button>
+            <button className="signup-form" type="button">Cadastre-se</button>
           </Link>
+
         </div>
 
         <div className="login-form">
@@ -51,7 +79,7 @@ function Login({ loginForm, setLoginForm }) {
 
           <div className="inputs-forms">
 
-            <form>
+            <form onSubmit={handleSubmitForm}>
 
               <span>Email</span>
               <input
@@ -69,11 +97,9 @@ function Login({ loginForm, setLoginForm }) {
                 onChange={(e) => handleChange(e)}
               />
 
-            </form>
+              <button className="signin-button" type="submit">Entrar</button>
 
-            <Link to="/home">
-              <button className="signin-button" type="button">Entrar</button>
-            </Link>
+            </form>
 
           </div>
 

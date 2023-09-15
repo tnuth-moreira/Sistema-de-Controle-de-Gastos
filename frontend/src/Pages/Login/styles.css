@@ -1,33 +1,70 @@
-.container-main {
-
-    display: flex;
-    height: 100vh;
-
-}
-
-
-img {
+.background-img {
 
     width: 1985px;
     height: 940px;
 
-    position: absolute;
     z-index: -1;
 
+}
+
+.container-main {
+
+    display: flex;
+
+    height: 100vh;
+
+}
+
+.login-logo-container {
+
+    display: flex;
+
+    width: 100px;
+    height: 100px;
+
+    position: fixed;
+    left: 60px;
+
+    align-items: center;
+
+}
+
+.logo-img {
+
+    margin-right: 90px;
+    width: 75px;
+    height: 75px;
+
+    z-index: 0;
+
+}
+
+.login-logo-container h3 {
+
+    color: #FFF;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .container-text {
 
     display: flex;
     flex-direction: column;
+
+    height: 500px;
+    margin-top: 290px;
+
 }
 
 .adver-text {
 
     display: flex;
-    margin-top: 330px;
     margin-left: 70px;
-    margin-right: 120px;
+
 
     width: 1000px;
 
@@ -68,9 +105,9 @@ img {
     line-height: normal;
 }
 
-.signup-button {
+button.signup-form {
 
-    width: 350px;
+    width: 410px;
     height: 70px;
 
     margin-left: 70px;
@@ -92,7 +129,7 @@ img {
 
 }
 
-.signup-button:hover {
+.signup-form:hover {
 
     background-color: #56559c;
 
@@ -109,7 +146,7 @@ img {
     height: 640px;
 
     margin-left: 10px;
-    margin-top: 110px;
+    margin-top: 120px;
 
     background-color: #ffff;
     border-radius: 20px;
@@ -139,12 +176,14 @@ img {
 }
 
 
-.inputs-form {
+.inputs-forms {
 
     display: flex;
     flex-direction: column;
+    align-items: center;
 
-
+    width: 700px;
+    height: 550px;
 
 }
 
@@ -157,19 +196,18 @@ form span {
     font-weight: 400;
     line-height: normal;
 
-    margin-left: 40px;
+    margin-left: 5px;
 
 }
 
-input {
+form input {
 
-    height: 70px;
-    width: 620px;
+    height: 60px;
+    width: 630px;
+
     padding: 20px;
-
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-bottom: 65px;
+    margin-bottom: 50px;
+    margin-left: 5px;
 
     border-radius: 5px;
     border: 1px solid #555;
@@ -184,7 +222,8 @@ input {
     width: 550px;
     height: 70px;
 
-    margin-left: 85px;
+    margin-top: 30px;
+    margin-left: 45px;
 
     border-radius: 5px;
     border: 0px;

@@ -1,4 +1,4 @@
-img {
+.background-img {
 
     width: 1985px;
     height: 940px;
@@ -12,8 +12,43 @@ img {
 
     display: flex;
     justify-content: center;
+
 }
 
+.signup-logo-container {
+
+    display: flex;
+
+    width: 100px;
+    height: 100px;
+
+    position: fixed;
+    left: 60px;
+
+    align-items: center;
+
+}
+
+.logo-img {
+
+    margin-right: 10px;
+    width: 75px;
+    height: 75px;
+
+    z-index: 0;
+
+}
+
+.signup-logo-container h3 {
+
+    color: #FFF;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
 
 .signup-container {
 
@@ -24,7 +59,7 @@ img {
     margin-top: 90px;
 
     height: 800px;
-    width: 600px;
+    width: 650px;
 
     background-color: #FFFFFF;
 
@@ -43,17 +78,17 @@ img {
     line-height: normal;
 }
 
-.inputs-form {
+.signup-form-container {
 
     display: flex;
     flex-direction: column;
+    align-items: center;
 
-    width: 400px;
+    width: 530px;
 
-    margin-right: 200px;
 }
 
-form span {
+.signup-form-container form span {
 
     color: #484848;
     font-family: 'Rubik', sans-serif;
@@ -62,25 +97,28 @@ form span {
     font-weight: 400;
     line-height: normal;
 
+    margin-left: 10px;
+
 }
 
-input {
+.signup-form-container form input {
 
     width: 500px;
     height: 55px;
-    margin-top: 10px;
+
     margin-bottom: 50px;
+    margin-left: 10px;
 
     font-size: 20px;
     font-family: 'Rubik', sans-serif;
 }
 
-.signup-button {
+button.signup-button {
 
-    width: 500px;
+    width: 400px;
     height: 70px;
 
-    margin-left: 40px;
+    margin-left: 60px;
 
     border-radius: 5px;
     border: 0px;
@@ -96,11 +134,32 @@ input {
 
     cursor: pointer;
 
-
 }
 
 .signup-button:hover {
 
     background-color: #56559c;
+
+}
+
+
+
+h3.login-link {
+
+    text-align: center;
+    text-decoration: underline #FFFFFF;
+
+
+    margin-top: 25px;
+
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    cursor: pointer;
+
+    color: #7B61FF;
 
 }
