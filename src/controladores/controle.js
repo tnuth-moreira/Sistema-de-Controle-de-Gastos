@@ -12,37 +12,40 @@ const criarConta = (req, res) => {
     return res.status(412).json({ erro: "Por Favor, preencha todas as informações" });
   }
 
+  const validacaoCpf = contas.find((validarCpf) => {
+    return validarCpf.usuario.cpf === cpf;
+  });
 
-const validacaoCpf  = contas.find((validarCpf) => {
-   return validarCpf.usuario.cpf === Number(cpf);
-});
-if (validacaoCpf) 
-  return res.status(409).json({ menssagem: "CPF já cadastrado!"})
+  if (validacaoCpf) 
+    return res.status(409).json({ mensagem: "CPF já cadastrado!"});
 
-if(cpf.length !== 11) 
-return res.status(412).json({ erro: "CPF inválido"})
+  if (cpf.length !== 11) 
+    return res.status(412).json({ erro: "CPF inválido" });
 
-const validacaoTelefone  = contas.find((validarTelefone) => {
-  return validarTelefone.usuario.telefone === Number(telefone);
-});
-if (validacaoTelefone) 
- return res.status(409).json({ menssagem: "Número de telefone já cadastrado!"});
+  const validacaoTelefone = contas.find((validarTelefone) => {
+    return validarTelefone.usuario.telefone === telefone;
+  });
 
-if(telefone.length !== 11) 
-return res.status(412).json({ erro: "Número de telefone inválido ou digite o DDD"});
+  if (validacaoTelefone) 
+    return res.status(409).json({ mensagem: "Número de telefone já cadastrado!" });
 
-const validacaoEmail = contas.find((validarEmail) => {
-  return validarEmail.usuario.email === email;
-});
+  if (telefone.length !== 11) 
+    return res.status(412).json({ erro: "Número de telefone inválido ou digite o DDD" });
 
-if (validacaoEmail)
-  return res.status(409).json({ mensagem: "Email já cadastrado!"})
+  const validacaoEmail = contas.find((validarEmail) => {
+    return validarEmail.usuario.email === email;
+  });
 
-if(email.indexOf('@') < 0 ||
-   email.indexOf('.') === 0 ||
-   email.indexOf('.') < 0 ) 
-    return res.status(409).json({ mensagem: "Email inválido"})
+  if (validacaoEmail)
+    return res.status(409).json({ mensagem: "Email já cadastrado!" });
 
+  if (email.indexOf('@') < 0 || email.indexOf('.') === 0 || email.indexOf('.') < 0) 
+    return res.status(409).json({ mensagem: "Email inválido" });
+
+  const validacaoDataNascimento = /^\d{4}-\d{2}-\d{2}$/;
+  if (!data_nascimento.match(validacaoDataNascimento)) {
+    return res.status(412).json({ erro: "Data de nascimento inválida. Use o formato 'AAAA-MM-DD'"});
+  }
 
   let idContas = 1;
 
@@ -52,6 +55,7 @@ if(email.indexOf('@') < 0 ||
     usuario: {
       nome,
       cpf,
+      data_nascimento,
       telefone,
       email,
       senha,
@@ -59,7 +63,7 @@ if(email.indexOf('@') < 0 ||
   };
 
   contas.push(novaConta);
-  return res.status(201).json({ menssagem: "Conta criada com sucesso.", conta: novaConta });
+  return res.status(201).json({ mensagem: "Conta criada com sucesso.", conta: novaConta });
 };
 
 const atualizarUsuarioConta = (req, res) => {
@@ -72,8 +76,9 @@ const atualizarUsuarioConta = (req, res) => {
   }
 
   const validacaoCpf  = contas.find((validarCpf) => {
-    return validarCpf.usuario.cpf === Number(cpf);
+    return validarCpf.usuario.cpf === cpf;
  });
+ 
  if (validacaoCpf) 
    return res.status(409).json({ menssagem: "CPF já cadastrado!"})
  
@@ -113,39 +118,44 @@ const atualizarUsuarioConta = (req, res) => {
 };
 
 
-const excluirConta = (req, res) => { 
-  const {id} = req.params;
+const excluirConta = (req, res) => {
+  const { id } = req.params;
 
- 
-  const contaEncontrada = contas.find((conta) => { 
+  const contaEncontrada = contas.find((conta) => {
     return conta.id === Number(id);
   });
 
   if (!contaEncontrada) {
-    return res.status(404).json({ erro: "Conta não encontrada"});
+    return res.status(404).json({ erro: "Conta não encontrada" });
   }
 
-  contas = contas.filter((conta) => { 
-    return conta.id !== Number(id);
-  });
+  const contaExcluida = contas.indexOf(contaEncontrada);
+
+  if (contaExcluida !== -1) {
+    contas.splice(contaExcluida, 1);
+  }
+
+  depositos = depositos.filter((deposito) => deposito.conta !== id);
+  saques = saques.filter((saque) => saque.conta !== id);
+  transferencias = transferencias.filter(
+    (transferencia) => transferencia.origem !== id && transferencia.destino !== id
+  );
 
   return res.status(204).send();
 };
 
 
-
 const deposito = (req, res) => { 
    const {numero_conta, valor} = req.body;
 
-   if (!numero_conta || !valor) {
+   if (!numero_conta) {
     return res.status(412).json({ erro: "Por Favor, preencha todas as informações"});
   }
 
-  if(valor < 1 ) { 
+  if(valor <= 0 ) { 
     return res.status(412).json({ erro: "O valor informado não é aceito"});
   }
   
-
    const contaEncontrada = contas.find((conta) => { 
     return conta.id == numero_conta;
   });
@@ -153,7 +163,6 @@ const deposito = (req, res) => {
   if (!contaEncontrada) {
     return res.status(404).json({ erro:"Conta não encontrada"});
   }
-
 
   contaEncontrada.saldo += Number(valor); 
 
@@ -258,7 +267,6 @@ const transferencia = (req, res) => {
     return res.status(404).json({ erro: "Conta de destino não encontrada" });
   }
 
- 
   if (contaOrigem.usuario.senha !== senha) {
     return res.status(401).json({ erro: "Senha incorreta" });
   }
@@ -299,6 +307,12 @@ const saldo = (req, res) => {
   return res.status(200).json({ saldo: contaEncontrada.saldo });
 };
 
+const extrato = (req, res) => {
+  const { extratoConta } = req;
+
+  return res.status(200).json(extratoConta);
+};
+
 
 module.exports = {
   listarContas,
@@ -308,5 +322,6 @@ module.exports = {
   deposito,
   saque,
   transferencia,
-  saldo
+  saldo,
+  extrato
 };
