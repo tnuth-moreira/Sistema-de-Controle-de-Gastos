@@ -1,7 +1,6 @@
 let { contas, depositos, saques, transferencias} = require("../bancodedados");
 
 
-
 const listarContas = (req, res) => {
   return res.status(200).json(contas);
 };
@@ -294,6 +293,13 @@ const transferencia = (req, res) => {
   return res.status(200).json({ mensagem: "Transferência realizada com sucesso!", Transferencia: transferenciaRealizada });
 };
 
+const saldo = (req, res) => {
+  const { contaEncontrada } = req;
+
+  return res.status(200).json({ saldo: contaEncontrada.saldo });
+};
+
+
 module.exports = {
   listarContas,
   criarConta,
@@ -302,4 +308,5 @@ module.exports = {
   deposito,
   saque,
   transferencia,
+  saldo
 };

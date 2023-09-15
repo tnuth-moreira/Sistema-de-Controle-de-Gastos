@@ -14,6 +14,7 @@ module.exports = {
         cpf: "01234567891",
         telefone: "21981627900",
         email: "test@email.com",
+        senha: 123
       }
 }
   ],
