@@ -70,10 +70,24 @@ const atualizarUsuarioConta = (req, res) => {
   const { id } = req.params;
   const { nome, cpf, data_nascimento, telefone, email, senha } = req.body;
 
+  const contaEncontrada = contas.find((conta) => {
+    return conta.id === Number(id);
+  });
+
+  if (!contaEncontrada) {
+    return res.status(404).json({ erro: "Conta não encontrada"});
+  }
 
   if (!nome || !cpf || !data_nascimento || !telefone || !email || !senha) {
     return res.status(412).json({ erro: "Por Favor, preencha todas as informações"});
   }
+  contaEncontrada.usuario = {
+    nome,
+    cpf,
+    telefone,
+    email,
+    senha,
+}
 
   const validacaoCpf  = contas.find((validarCpf) => {
     return validarCpf.usuario.cpf === cpf;
@@ -94,25 +108,9 @@ const atualizarUsuarioConta = (req, res) => {
  
  if(email.indexOf('@') < 0 ||
     email.indexOf('.') === 0 ||
-    email.indexOf('.') < 0 ) 
-     return res.status(409).json({ mensagem: "Email inválido"})
-
-
-  const contaEncontrada = contas.find((conta) => {
-    return conta.id === Number(id);
-  });
-
-  if (!contaEncontrada) {
-    return res.status(404).json({ erro: "Conta não encontrada"});
-  }
-
-   contaEncontrada.usuario = {
-      nome,
-      cpf,
-      telefone,
-      email,
-      senha,
-  }
+    email.indexOf('.') < 0 ) {
+     return res.status(409).json({ mensagem: "Email inválido"}) 
+    };
 
   return res.status(203).send({ menssagem: "Atualizada com sucesso", conta: contaEncontrada.usuario});
 };
