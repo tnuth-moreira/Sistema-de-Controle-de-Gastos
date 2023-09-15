@@ -6,6 +6,16 @@ module.exports = {
     senha: "Cubos123Bank",
   },
   contas: [
+    {
+      id: 2,
+      saldo: 850,
+      usuario: {
+        nome: "Test",
+        cpf: "01234567891",
+        telefone: "21981627900",
+        email: "test@email.com",
+      }
+}
   ],
   saques: [],
   depositos: [],
