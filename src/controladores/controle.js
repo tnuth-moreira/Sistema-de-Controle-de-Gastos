@@ -81,14 +81,7 @@ const atualizarUsuarioConta = (req, res) => {
   if (!nome || !cpf || !data_nascimento || !telefone || !email || !senha) {
     return res.status(412).json({ erro: "Por Favor, preencha todas as informações"});
   }
-  contaEncontrada.usuario = {
-    nome,
-    cpf,
-    telefone,
-    email,
-    senha,
-}
-
+  
   const validacaoCpf  = contas.find((validarCpf) => {
     return validarCpf.usuario.cpf === cpf;
  });
@@ -112,6 +105,14 @@ const atualizarUsuarioConta = (req, res) => {
      return res.status(409).json({ mensagem: "Email inválido"}) 
     };
 
+    contaEncontrada.usuario = {
+      nome,
+      cpf,
+      telefone,
+      email,
+      senha,
+  }
+  
   return res.status(203).send({ menssagem: "Atualizada com sucesso", conta: contaEncontrada.usuario});
 };
 
@@ -173,7 +174,7 @@ const deposito = (req, res) => {
   let segundo = String(dataAtual.getSeconds()).padStart(2, '0');
   const dataFormatada = `${ano}-${mes}-${dia} ${hora}:${minuto}:${segundo}`;
 
-  depositos.push({
+  depositos.unshift({
     data: dataFormatada,
     conta: numero_conta, 
     valor: valor,
@@ -225,7 +226,7 @@ const saque = (req, res) => {
   let segundo = String(dataAtual.getSeconds()).padStart(2, '0');
   const dataFormatada = `${ano}-${mes}-${dia} ${hora}:${minuto}:${segundo}`;
 
-  saques.push({
+  saques.unshift({
     data: dataFormatada,
     conta: numero_conta,
     valor: valor,
@@ -287,7 +288,7 @@ const transferencia = (req, res) => {
   let segundo = String(dataAtual.getSeconds()).padStart(2, '0');
   const dataFormatada = `${ano}-${mes}-${dia} ${hora}:${minuto}:${segundo}`;
 
-  transferencias.push({
+  transferencias.unshift({
     data: dataFormatada,
     origem: numero_conta_origem,
     destino: numero_conta_destino,
