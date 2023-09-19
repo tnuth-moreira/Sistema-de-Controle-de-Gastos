@@ -247,3 +247,13 @@ form input {
     background-color: #56559c;
 
 }
+
+.login-error {
+
+    color: rgb(240, 23, 23);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+
+    margin-top: 30px;
+}

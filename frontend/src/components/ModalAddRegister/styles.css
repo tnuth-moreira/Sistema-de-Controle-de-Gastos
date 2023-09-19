@@ -1,0 +1,171 @@
+.background-modal {
+
+    width: 1990px;
+    height: 940px;
+
+    background-color: rgba(0, 0, 0, 0.13);
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+}
+
+.modal-container {
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    top: 80px;
+    left: 570px;
+
+    width: 650px;
+    height: 800px;
+    background-color: #FFF;
+
+    border-radius: 20px;
+
+}
+
+
+.modal-title {
+
+    display: flex;
+    flex-direction: row;
+
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.modal-title h1 {
+
+    color: #000;
+    font-family: 'Rubik', sans-serif;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.modal-exit-button {
+
+    margin-left: 250px;
+    cursor: pointer;
+
+}
+
+.out-entry-buttons {
+
+    display: flex;
+    flex-direction: row;
+
+    margin-left: 55px;
+    margin-top: 50px;
+
+}
+
+.out-entry-buttons button {
+
+    width: 260px;
+    height: 70px;
+
+    border-radius: 5px;
+    border: transparent;
+
+    color: #FFF;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.entry-active {
+
+    background-color: #3A9FF1;
+
+}
+
+.output-active {
+
+    background-color: #FF576B;
+}
+
+.entry-inactive,
+.output-inactive {
+    background-color: #B9B9B9;
+    ;
+}
+
+
+
+.modal-container form {
+
+    margin-top: 30px;
+
+}
+
+.modal-container form label {
+
+    color: #484848;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    margin-left: 20px;
+
+}
+
+.modal-container form input {
+
+    width: 590px;
+
+    margin-left: 20px;
+    margin-bottom: 30px;
+
+}
+
+.modal-container form select {
+
+    width: 590px;
+    height: 60px;
+
+    margin-left: 20px;
+    margin-bottom: 30px;
+
+    border-radius: 5px;
+    border: 1px solid #555;
+
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+
+}
+
+.modal-container form button {
+
+    width: 300px;
+    height: 60px;
+
+    margin-top: 30px;
+    margin-left: 150px;
+
+    border-radius: 5px;
+    border: transparent;
+
+    background-color: #7978D9;
+
+    color: #FFF;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    cursor: pointer;
+}

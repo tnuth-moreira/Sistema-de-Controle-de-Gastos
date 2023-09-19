@@ -3,10 +3,13 @@ import "./styles.css";
 import BackgroundImage from "../../assets/background.png"
 import LogoImage from "../../assets/logo.png"
 import { useNavigate, Link } from 'react-router-dom'
+import { useState } from "react";
 
 
 
-function Login({ loginForm, setLoginForm, users, setUsers }) {
+function Login({ loginForm, setLoginForm, users }) {
+
+  const [error, setError] = useState('')
 
   const navigate = useNavigate()
 
@@ -23,14 +26,20 @@ function Login({ loginForm, setLoginForm, users, setUsers }) {
     event.preventDefault();
 
     if (!loginForm.email || !loginForm.password) {
+      setError('Preencha todos os campos')
       return
     }
 
-    const userLogin = users.some((user) => user.signupForm.email === loginForm.email && user.signupForm.password === loginForm.password)
+    const userLoginValidation = users.some((user) => user.email === loginForm.email && user.password === loginForm.password)
 
-    if (!userLogin) {
+    if (!userLoginValidation) {
+      setError('Email ou senha inválidos')
       return
     }
+
+    const userLogged = users.find((user) => user.email === loginForm.email && user.password === loginForm.password)
+
+    localStorage.setItem('loggedInUser', JSON.stringify(userLogged));
 
     setLoginForm({ email: '', password: '' })
 
@@ -100,6 +109,8 @@ function Login({ loginForm, setLoginForm, users, setUsers }) {
               <button className="signin-button" type="submit">Entrar</button>
 
             </form>
+
+            <span className="login-error">{error}</span>
 
           </div>
 

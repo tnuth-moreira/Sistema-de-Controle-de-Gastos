@@ -8,23 +8,41 @@ import { useState } from 'react';
 
 function MyRoutes() {
 
-    const [users, setUsers] = useState([])
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    let listTransfers = JSON.parse(localStorage.getItem('transfers'));
+
+    let copyList = [listTransfers]
+
+    let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
+
+    const [transfer, setTransfer] = useState({
+        type: '',
+        amount: 0,
+        category: '',
+        data: '',
+        description: ''
+    })
 
     const [loginForm, setLoginForm] = useState({
         email: '',
-        password: ''
+        password: '',
     })
-
 
     const [signupForm, setSignupForm] = useState({
 
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        copyList,
+        resume: {
+            entry: '',
+            output: '',
+            total: ''
+        }
 
     })
-
 
     return (
 
@@ -35,7 +53,7 @@ function MyRoutes() {
                     loginForm={loginForm}
                     setLoginForm={setLoginForm}
                     users={users}
-                    setUsers={setUsers}
+
                 />}
                 />
 
@@ -43,7 +61,6 @@ function MyRoutes() {
                     loginForm={loginForm}
                     setLoginForm={setLoginForm}
                     users={users}
-                    setUsers={setUsers}
                 />}
                 />
 
@@ -54,11 +71,19 @@ function MyRoutes() {
                     signupForm={signupForm}
                     setSignupForm={setSignupForm}
                     users={users}
-                    setUsers={setUsers}
                 />}
             />
 
-            <Route path='/home' element={<Home />} />
+            <Route path='/home' element={<Home
+
+                transfer={transfer}
+                setTransfer={setTransfer}
+                loggedInUser={loggedInUser}
+                signupForm={signupForm}
+                setSignupForm={setSignupForm}
+                listTransfers={listTransfers}
+            />}
+            />
         </Routes >
     )
 

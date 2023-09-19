@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import BackgroundImage from '../../assets/background.png'
 import LogoImage from '../../assets/logo.png'
 import "./styles.css"
@@ -6,9 +6,11 @@ import { Link, useNavigate } from 'react-router-dom'
 
 
 
-function SignUp({ signupForm, setSignupForm, users, setUsers }) {
+function SignUp({ signupForm, setSignupForm, users }) {
 
     const navigate = useNavigate()
+
+    const [error, setError] = useState('')
 
     function handleChangeForm(e) {
 
@@ -22,31 +24,37 @@ function SignUp({ signupForm, setSignupForm, users, setUsers }) {
         event.preventDefault();
 
         if (!signupForm.name || !signupForm.email || !signupForm.password || !signupForm.confirmPassword) {
+            setError('Preencha todos os campos')
             return
         }
 
         if (signupForm.password.length < 6) {
+            setError('A senha deve ter no minimo 6 dígitos')
             return
         }
 
         if (signupForm.confirmPassword !== signupForm.password) {
+            setError('A senha e a confirmação de senha devem ser iguais')
             return
         }
 
-        const userVerification = users.some((user) => user.signupForm.name === signupForm.name || user.signupForm.email === signupForm.email)
+        const userVerification = users.some((user) => user.name === signupForm.name || user.email === signupForm.email)
 
         if (userVerification) {
+            setError('Usuario já cadastrado troque o nome e email')
             return
         }
 
-        setUsers([...users, { signupForm }])
+        users.push(signupForm)
+
+        localStorage.setItem('users', JSON.stringify(users));
 
         setSignupForm({ name: '', email: '', password: '', confirmPassword: '' })
 
+        setError('')
+
         navigate('/login')
     }
-
-
 
     return (
 
@@ -107,8 +115,7 @@ function SignUp({ signupForm, setSignupForm, users, setUsers }) {
 
                         </form>
 
-
-
+                        <span className='signup-error'>{error}</span>
 
                         <Link to="/login">
                             <h3 className='login-link'>Já tem cadastro? Clique aqui!</h3>

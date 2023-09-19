@@ -106,7 +106,7 @@
     width: 500px;
     height: 55px;
 
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     margin-left: 10px;
 
     font-size: 20px;
@@ -142,7 +142,17 @@ button.signup-button {
 
 }
 
+.signup-error {
 
+    color: rgb(240, 23, 23);
+
+    margin-top: 20px;
+    margin-bottom: 5px;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 17px;
+
+}
 
 h3.login-link {
 
