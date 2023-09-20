@@ -69,7 +69,7 @@ const senhaExtrato = (req, res, next) => {
         return transferencia.destino === numero_conta;
     });
     
-    const extratoConta = {
+    let extratoConta = {
         depositos: depositosConta,
         saques: saquesConta,
         transferenciasEnviadas: transferenciasEnviadas,
